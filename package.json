@@ -1,0 +1,32 @@
+{
+  "name": "video-stream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.11",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@types/fluent-ffmpeg": "^2.1.20",
+    "@types/multer": "^1.4.7",
+    "@types/uniqid": "^5.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "multer": "^1.4.3",
+    "uniqid": "^5.4.0"
+  }
+}
