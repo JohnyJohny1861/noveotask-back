@@ -1,12 +1,12 @@
 import ffmpeg from 'fluent-ffmpeg';
 import path from "path";
-import { uploadsDir } from "./fileHandler";
+import { UPLOADS_DIR } from "../config";
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 ffmpeg.setFfmpegPath(ffmpegPath);
 
 const transcodeVideo = async (filePath: string, fileName: string) => {
-    const transcodeVideo = path.join(uploadsDir, `${fileName}-360.mp4`);
+    const transcodeVideo = path.join(UPLOADS_DIR, `${fileName}-360.mp4`);
     return new Promise<void>((resolve, reject) => {
         ffmpeg(filePath)
             .videoCodec("libx264")

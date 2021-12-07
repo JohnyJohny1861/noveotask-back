@@ -3,8 +3,7 @@ import uniqid from 'uniqid';
 import { Request } from "express";
 import path from "path";
 import fs from "fs";
-
-export const uploadsDir = path.join(process.cwd(), "uploads");
+import { UPLOADS_DIR } from "../config.js"
 
 const storage: StorageEngine = multer.diskStorage({
     destination: (
@@ -12,21 +11,20 @@ const storage: StorageEngine = multer.diskStorage({
         file: Express.Multer.File,
         cb: Function
     ): void => {        
-        if (!fs.existsSync(uploadsDir))
-            fs.mkdirSync(uploadsDir);
+        fs.exists(UPLOADS_DIR, (exists: Boolean): void => {
+            if (!exists)
+                fs.mkdirSync(UPLOADS_DIR);
+        });
 
-        cb(null, uploadsDir);
+        cb(null, UPLOADS_DIR);
     },
     filename: (
         req: Request,
         file: Express.Multer.File,
         cb: Function): void => {
-        
-        const uploadedFileName = uniqid(file.filename + new Date().getTime()) + path.extname(file.originalname);
-        // const uploadedFileName = file.originalname;
-
-        cb(null, uploadedFileName);
-    }
+            const uploadedFileName = uniqid(file.filename + new Date().getTime()) + path.extname(file.originalname);
+            cb(null, uploadedFileName);
+        }
 });
 
 const fileFilter = (
