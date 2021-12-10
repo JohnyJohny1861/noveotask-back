@@ -17,7 +17,8 @@ app.post("/upload", ( req: Request, res: Response ): void => {
     upload(req, res, async err => {
         if (!err && req.file) {
             const filePath = req.file.path;
-            let fileName = req.file.originalname.split('.')[0];
+            let dotIndex = req.file.originalname.lastIndexOf('.');
+            let fileName = req.file.originalname.slice(0, dotIndex);
             if(filePath && fileName) {
                 fileName = `${fileName}===${uniqid()}`;
                 await transcodeVideo(filePath, fileName);

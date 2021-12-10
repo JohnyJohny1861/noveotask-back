@@ -13,10 +13,15 @@ const storage: StorageEngine = multer.diskStorage({
     ): void => {        
         fs.exists(UPLOADS_DIR, (exists: Boolean): void => {
             if (!exists)
-                fs.mkdirSync(UPLOADS_DIR);
+                fs.mkdir(UPLOADS_DIR, (err) => {
+                    if (err) cb(null, false);
+                    else cb(null, UPLOADS_DIR);
+                });
+            else {
+                cb(null, UPLOADS_DIR);
+            }
         });
 
-        cb(null, UPLOADS_DIR);
     },
     filename: (
         req: Request,
