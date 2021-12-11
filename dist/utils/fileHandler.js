@@ -18,7 +18,9 @@ const storage = multer_1.default.diskStorage({
                     else
                         cb(null, config_js_1.UPLOADS_DIR);
                 });
-            cb(null, config_js_1.UPLOADS_DIR);
+            else {
+                cb(null, config_js_1.UPLOADS_DIR);
+            }
         });
     },
     filename: (req, file, cb) => {
