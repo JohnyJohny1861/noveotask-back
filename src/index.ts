@@ -30,7 +30,6 @@ app.post("/upload", ( req: Request, res: Response ): void => {
             }
         }
         else {
-            console.log(err);
             err.message ? 
                 res.status(422).json(err.message) : 
                 res.status(500).json('Internal server error');

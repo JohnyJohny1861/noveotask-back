@@ -28,8 +28,7 @@ app.post("/upload", (req, res) => {
         if (!err && req.file) {
             const filePath = req.file.path;
             let dotIndex = req.file.originalname.lastIndexOf('.');
-            let fileName = req.file.originalname.slice(-1 * dotIndex);
-            console.log(fileName);
+            let fileName = req.file.originalname.slice(0, dotIndex);
             if (filePath && fileName) {
                 fileName = `${fileName}===${(0, uniqid_1.default)()}`;
                 yield (0, transcodeVideo_1.default)(filePath, fileName);
